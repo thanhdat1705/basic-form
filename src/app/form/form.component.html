@@ -1,3 +1,9 @@
-<div class="container card">
-ahihi
+<div class="container">
+  <div class="card">
+    <router-outlet></router-outlet>
+
+    @if (formService.questionForm().length === 0) {
+    <a (click)="addNewQuestion()">Add new question</a>
+    }
+  </div>
 </div>

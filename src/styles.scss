@@ -118,4 +118,13 @@ body {
     "Apple Color Emoji",
     "Segoe UI Emoji",
     "Segoe UI Symbol";
+
+  a {
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+      color: blue;
+    }
+  }
 }

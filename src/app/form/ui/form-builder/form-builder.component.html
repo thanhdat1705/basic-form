@@ -1,0 +1,72 @@
+<form [formGroup]="formGroup">
+  <div class="form-array" formArrayName="items">
+    @for (control of form.items.controls; track control; let i = $index) {
+    <div class="form-group" [formGroupName]="i">
+      @if (control.value.type === 'text') {
+      <div
+        class="label"
+        [class.isRequired]="formService.questionForm()[i].isRequired"
+      >
+        {{ formService.questionForm()[i].question }}
+      </div>
+
+      <mat-form-field
+        class="small"
+        appearance="outline"
+        subscriptSizing="dynamic"
+      >
+        <textarea matInput formControlName="answer"></textarea>
+      </mat-form-field>
+
+      <ng-container
+        *ngTemplateOutlet="errorTmp; context: { control }"
+      ></ng-container>
+      } 
+      
+      @if (control.value.type === 'checkBox') {
+      <div
+        class="label"
+        [class.isRequired]="formService.questionForm()[i].isRequired"
+      >
+        {{ formService.questionForm()[i].question }}
+      </div>
+
+      <mat-selection-list
+        #selection
+        (selectionChange)="
+          optionChange(selection.selectedOptions.selected, control)
+        "
+      >
+        @for (option of formService.questionForm()[i].optionList; track option;
+        let i = $index) {
+        <mat-list-option [value]="option['answerOption' + i]">
+          {{ option['answerOption' + i] }}
+        </mat-list-option>
+        }
+      </mat-selection-list>
+
+      <ng-container
+        *ngTemplateOutlet="errorTmp; context: { control }"
+      ></ng-container>
+
+      }
+    </div>
+    }
+  </div>
+</form>
+
+@if (formService.questionForm().length > 0) {
+<div class="action">
+  <a (click)="addNewQuestion()">Add new question</a>
+  <button mat-raised-button (click)="reviewAnswer()">
+    Review my answers >
+  </button>
+</div>
+}
+
+<ng-template #errorTmp let-control="control">
+  @if (control.controls['answer'].invalid && control.controls['answer'].touched)
+  {
+  <div class="error-message">This field is required</div>
+  }
+</ng-template>

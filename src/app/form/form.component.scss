@@ -1,9 +1,22 @@
 @import "mixins";
 
 :host {
-  padding: 64px;
+  .container {
+    display: flex;
+    justify-content: center;
+    padding: 64px;
+  }
+
   .card {
+    display: flex;
+    flex-direction: column;
+    min-width: 500px;
+    border-radius: 6px;
+    padding: 24px;
     @include shadow(xs);
-    
+
+    @include respond(phone) {
+      min-width: 300px;
+    }
   }
 }

@@ -1,0 +1,49 @@
+@import "mixins";
+
+:host {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 10px;
+
+    .form-array {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .label {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .isRequired {
+      &::after {
+        content: "*";
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+
+    @include respond(phone) {
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+  }
+
+  .error-message {
+    color: #f44336;
+  }
+}
