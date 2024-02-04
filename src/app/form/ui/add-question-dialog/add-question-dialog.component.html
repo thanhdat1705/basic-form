@@ -1,0 +1,79 @@
+<h2 mat-dialog-title>Add new question</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="formGroup">
+    <mat-form-field
+      class="small"
+      appearance="outline"
+      subscriptSizing="dynamic"
+    >
+      <mat-label>Question Type</mat-label>
+      <mat-select
+        formControlName="questionType"
+        (selectionChange)="typeChange($event)"
+      >
+        @for (item of QUESTION_TYPE_SELECTION; track $index) {
+        <mat-option [value]="item.value">{{ item.viewValue }}</mat-option>
+        }
+      </mat-select>
+
+      @if (form['questionType'].hasError('required')) {
+      <mat-error>This field is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field
+      class="small"
+      appearance="outline"
+      subscriptSizing="dynamic"
+    >
+      <mat-label>Type question here</mat-label>
+      <input matInput formControlName="question" />
+      @if (form['question'].hasError('required')) {
+      <mat-error>This field is required</mat-error>
+      }
+    </mat-form-field>
+
+    <div formArrayName="optionList" class="form--array">
+      @for (control of listOfControl; track control; let i = $index) {
+      <div [formGroupName]="i">
+        <mat-form-field
+          class="small"
+          appearance="outline"
+          subscriptSizing="dynamic"
+        >
+          <mat-label>Add Answer Option</mat-label>
+          <input matInput [formControlName]="control.controlInstance" />
+          @if (form['optionList'].controls[i].invalid) {
+          <mat-error>This field is required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      }
+    </div>
+
+    <div class="more-option">
+      @if (form['questionType'].value === QUESTION_TYPE_ENUM.Checkbox) {
+      <div class="add-another" (click)="addOption()">+ Add another answer</div>
+      }
+
+      <div>
+        <mat-checkbox color="primary" formControlName="isOther">
+          Allow uer to specify thier own answer
+        </mat-checkbox>
+      </div>
+
+      <div>
+        <mat-checkbox color="primary" formControlName="isRequired">
+          This field is required
+        </mat-checkbox>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions [align]="'end'">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button cdkFocusInitial (click)="submit()">Submit</button>
+</mat-dialog-actions>

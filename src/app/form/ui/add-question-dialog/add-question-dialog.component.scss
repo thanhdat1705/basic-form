@@ -1,0 +1,33 @@
+:host {
+  h2 {
+    font-size: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 10px;
+
+    .form--array {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    .add-another {
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.87);
+      margin-bottom: 12px;
+      width: fit-content;
+
+      &:hover {
+        color: blue;
+      }
+    }
+  }
+}

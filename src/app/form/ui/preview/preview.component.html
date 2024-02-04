@@ -1,0 +1,21 @@
+@for (item of formService.previewForm(); track $index) {
+  @if (item.type === 'checkBox') {
+    <div class="preview-item">
+      <label>{{ item.question }}</label>
+
+      @for (option of item.answer; track $index) {
+        <div>{{option}}</div>
+      }
+    </div>
+  }
+
+  @else {
+    <div class="preview-item">
+      <label>{{ item.question }}</label>
+
+      <p>{{ item.answer }}</p>
+    </div>
+  }
+}
+
+<a [routerLink]="['/form/builder']">Back to Forms Builder</a>
