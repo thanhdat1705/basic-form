@@ -1,0 +1,190 @@
+@import "mixins";
+
+.mat-mdc-button-base {
+  --mdc-outlined-button-container-shape: var(--radius-radi-6, 12px);
+}
+
+.mat-mdc-button {
+  border-radius: var(--radius-radi-6, 12px);
+  height: var(--mdc-filled-button-container-height, 44px) !important;
+}
+
+.mat-mdc-unelevated-button {
+  --mdc-filled-button-container-shape: var(--radius-radi-6, 12px);
+
+  min-height: var(--mdc-filled-button-container-height, 44px) !important;
+  height: fit-content !important;
+
+  &.mat-primary {
+    --mdc-filled-button-label-text-color: var(--colors-gray-900, #202024) !important;
+    font-weight: 600;
+  }
+
+  &.mat-secondary {
+    font-weight: 600;
+    color: var(--mode-alpha-900, #323e48) !important;
+    border: 1px solid var(--mode-base-200, #e4e4e7);
+    background-color: var(--mode-base-100, #f4f4f5) !important;
+  }
+
+  .mdc-button__label {
+    + .mat-icon {
+      margin-left: var(--space-6) !important;
+      width: 24px;
+      height: 24px;
+
+      mat-spinner {
+        --mdc-circular-progress-active-indicator-color: var(--colors-gray-900);
+      }
+    }
+  }
+}
+
+mat-checkbox {
+  --mdc-checkbox-state-layer-size: 20px;
+}
+
+mat-form-field {
+  --mdc-outlined-text-field-focus-outline-width: 3px;
+  --mat-form-field-container-height: 44px;
+
+  .mdc-text-field {
+    border-radius: 4px;
+    /* shadow/sm */
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .mdc-text-field--outlined .mdc-notched-outline__notch {
+    border-right: 0 !important;
+  }
+
+  &.mat-mdc-form-field-has-icon-prefix {
+    .mdc-notched-outline {
+      z-index: 2;
+    }
+
+    .mat-mdc-form-field-icon-prefix > .mat-icon,
+    .mat-mdc-form-field-icon-suffix > .mat-icon {
+      padding: var(--space-5);
+      color: var(--mode-alpha-700);
+    }
+
+    .mat-mdc-form-field-icon-prefix {
+      display: flex;
+      position: relative;
+      align-self: stretch;
+      overflow: hidden;
+      padding: 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 1px;
+        height: 100%;
+        background-color: #e4e4e7;
+      }
+
+      > span[matprefix] {
+        padding: 11px var(--space-7);
+        color: var(--mode-alpha-700);
+        line-height: 1;
+        font-size: 18px;
+      }
+    }
+
+    .mat-mdc-form-field-infix {
+      margin-left: 16px;
+    }
+  }
+
+  &.small {
+    .mat-mdc-form-field-icon-suffix {
+      mat-datepicker-toggle {
+        padding-right: 4px;
+
+        > .mat-mdc-icon-button.mat-mdc-button-base {
+          --mdc-icon-button-state-layer-size: 44px;
+          padding: 10px;
+        }
+
+        .mat-mdc-icon-button .mat-mdc-button-persistent-ripple {
+          display: none;
+        }
+      }
+    }
+
+    .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+      padding: var(--space-5, 10px) 0;
+      min-height: 44px;
+
+      input::placeholder {
+        color: var(--mode-base-400);
+      }
+    }
+  }
+}
+
+div.mat-mdc-select-panel {
+  border-radius: 8px !important;
+}
+
+.mat-mdc-option {
+  min-height: 44px;
+  background-color: var(--mode-base-00) !important;
+
+  &.mdc-list-item {
+    padding: 0 8px;
+  }
+
+  .mdc-list-item__primary-text {
+    display: flex;
+    width: 100%;
+    padding: 10px 16px;
+    color: var(--mode-alpha-700);
+  }
+}
+
+.mdc-notched-outline {
+  --mdc-outlined-text-field-outline-color: var(--mode-base-200);
+}
+
+.mat-mdc-dialog-container {
+  .mdc-dialog__surface {
+    border-radius: var(--radius-radi-6) !important;
+  }
+
+  .mdc-dialog__title {
+    --mdc-dialog-subhead-size: 20px;
+  }
+}
+
+.mat-mdc-form-field-error {
+  margin-top: var(--space-2);
+  font-size: 14px;
+}
+
+.form-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+
+  textarea {
+    padding: var(--space-6, 12px) var(--space-7, 16px);
+    border-radius: var(--radius-radi-6, 12px);
+    border: 1px solid var(--mode-base-200, #e4e4e7);
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+
+    @include shadow(sm);
+  }
+}
+
+.sc-snackbar-container {
+  .mdc-snackbar__surface {
+    background-color: transparent !important;
+    padding-right: 0 !important;
+  }
+}

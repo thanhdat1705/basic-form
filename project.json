@@ -2,7 +2,7 @@
   "name": "basic-form",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "basic-form",
+  "prefix": "bf",
   "sourceRoot": "./src",
   "tags": [],
   "targets": {
@@ -17,7 +17,14 @@
         "tsConfig": "./tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["./src/favicon.ico", "./src/assets"],
-        "styles": ["./src/styles.scss"],
+        "styles": [
+          "./src/styles.scss",
+          "./src/assets/styles/grid.scss",
+          "./src/assets/styles/override-material.scss"
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": ["./src/assets/styles"]
+        },
         "scripts": []
       },
       "configurations": {
